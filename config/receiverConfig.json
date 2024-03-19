@@ -1,0 +1,19 @@
+{
+  "Receivers": [
+    {
+      "Ip": "127.0.0.1",
+      "Port": 9999,
+      "Active": true
+    },
+    {
+      "Ip": "127.0.0.1",
+      "Port": 9998,
+      "Active": false
+    },
+    {
+      "Ip": "127.0.0.1",
+      "Port": 9997,
+      "Active": false
+    }
+  ]
+}
