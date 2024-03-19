@@ -6,6 +6,7 @@
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/Faeleth/kongsberg_sensor?color=56BEB8">
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/Faeleth/kongsberg_sensor?color=56BEB8">
+</p>
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
