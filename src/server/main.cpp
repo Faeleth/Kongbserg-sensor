@@ -13,28 +13,33 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     const std::string SENSORS_PATH = argv[1]; 
+    
+    // otworzenie i wczytanie pliku configuracyjnego json
     SensorManager * sensorManager = new SensorManager(SENSORS_PATH);
-    auto sensors = sensorManager->getDevices();
+    auto sensors = sensorManager->get_devices();
 
-    Server** servers = new Server*[sensorManager->getDevicesCount()];
+    Server** servers = new Server*[sensorManager->get_devices_count()];
     unsigned short port = 9999;
 
-    for (int i{}; i<sensorManager->getDevicesCount(); i++) {
+    // takich watkow jest tyle ile jest sensorow
+    for (int i{}; i<sensorManager->get_devices_count(); i++) {
         servers[i] = new Server(
             sensors[i], 
             port--
         );
-        std::cout << "Server with sensor [" << sensors[i]->getId() << "] works on port: " << servers[i]->getPort() << std::endl;
+        // stworz watki zajmujace sie akceptowaniem polaczen z klientami
         std::thread(&Server::listen_connections, servers[i]).detach();
-    }
+        // logowanie portow
+        std::cout << "Server with sensor [" << sensors[i]->get_id() << "] works on port: " << servers[i]->get_port() << std::endl;
 
-    for (int i{}; i<sensorManager->getDevicesCount(); i++) {
+        // stworz watki zajmujace sie generowaniem i wysylaniem wiadomosci do swoich odbiorcow
         std::thread(&Server::broadcast, servers[i]).detach();
     }
 
+    // utrzymanie glownego watku programu przed zakonczeniem
     while(true){}
 
-    for (int i{}; i<sensorManager->getDevicesCount(); i++) {
+    for (int i{}; i<sensorManager->get_devices_count(); i++) {
         delete servers[i];
     }
     delete[] servers;

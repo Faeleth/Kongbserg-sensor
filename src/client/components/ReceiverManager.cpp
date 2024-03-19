@@ -2,7 +2,8 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 
-void ReceiverManager::readJson(std::string _path_to_file){
+// wczytaj dane z pliku konfiguracyjnego czujnikow
+void ReceiverManager::read_json(std::string _path_to_file){
     std::ifstream file(_path_to_file);
     if (!file.is_open()) {
         throw std::runtime_error("Failed to open file!");
@@ -19,6 +20,6 @@ void ReceiverManager::readJson(std::string _path_to_file){
             receivers_json[i]["Port"], 
             receivers_json[i]["Active"]
         );
-        devicesCount++;
+        devices_count++;
     }
 }

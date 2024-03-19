@@ -29,6 +29,7 @@ void Server::listen_connections() {
     }
 }
 
+// wygenerowana wartosc przeslij wszystkim klientom
 void Server::send_message(int value) {
     std::string message =
         "$FIX, " +
@@ -37,25 +38,27 @@ void Server::send_message(int value) {
         ", " + sensor->classify_value(value) +
         "*\n";
 
-    // Create a vector to hold sockets that encountered an error
     std::vector<std::shared_ptr<boost::asio::ip::tcp::socket>> errorSockets;
 
+    // w przypadku gdy klient zerwie połaczenie zapisujemy dany socket do usuniecia z vectora i pozniej usuwamy
     for (auto it = clientSockets.begin(); it != clientSockets.end(); ++it) {
         try {
-            size_t bytes_written = boost::asio::write(*(*it), boost::asio::buffer(message));
-            // std::cout << "Sent message to client: " << bytes_written << " bytes" << std::endl;
+            boost::asio::write(*(*it), boost::asio::buffer(message));
         } catch (std::exception& e) {
             std::cerr << "Error sending message to client: " << e.what() << std::endl;
             errorSockets.push_back(*it); // Add socket to error list
         }
     }
 
-    // Remove sockets that encountered an error
+    // usuniecie socketow klientow ktorzy zerwali polaczenie
     for (auto& socket : errorSockets) {
         clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), socket), clientSockets.end());
     }
 }
 
+// glowna petla wysylania wiadomosci w okreslonej przez symulator czestotliwosci
+// pod uwage brany jest rowniez czas wyslania wszystkim klientom wiadomosci przez
+// co watek zostanie uspiony na czas od 0 do planned_sleep, nie mniej, nie wiecej
 void Server::broadcast() {
     try{
         while (true) {

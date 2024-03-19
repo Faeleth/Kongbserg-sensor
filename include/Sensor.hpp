@@ -10,7 +10,7 @@ class Sensor {
     unsigned int id;
     std::string type;
 
-    static unsigned int sensorCounter;
+    static unsigned int sensor_counter;
 
     enum class Quality {
         Alarm,
@@ -27,6 +27,6 @@ class Sensor {
 
         std::string to_string() const;
         std::string to_string_broadcast() const;
-        int getId() const { return id; };
+        int get_id() const { return id; };
         unsigned int getFrequency() const { return frequency; };
 };

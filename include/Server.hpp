@@ -20,5 +20,5 @@ class Server {
         void send_message(int value);
         void broadcast();
 
-        unsigned short getPort() const { return port; }
+        unsigned short get_port() const { return port; }
 };

@@ -13,6 +13,6 @@ class Client {
     std::string receive_message() const;
     std::string parse_message(const std::string &message) const;
     public:
-        Client(const std::string & _ip_address, unsigned short _port_num, bool _is_active = true);
+        Client(const std::string _ip_address, const unsigned short _port_num, const bool _is_active = true);
         void listen() const;
 };

@@ -5,13 +5,13 @@
 
 // inicjalizacja sensorów z pliku json i zarządzanie ich stanem
 class SensorManager: public DeviceManager<Sensor>{
-    void readJson(std::string _path_to_file) override;
+    void read_json(std::string _path_to_file) override;
     
     public:
         SensorManager(std::string _path_to_file){
             devices = nullptr; 
-            devicesCount = 0; 
-            readJson(_path_to_file);
+            devices_count = 0; 
+            read_json(_path_to_file);
         }
         ~SensorManager();
 };

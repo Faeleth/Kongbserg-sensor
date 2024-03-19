@@ -1,12 +1,14 @@
 #include <Sensor.hpp>
 #include <random>
 
-unsigned int Sensor::sensorCounter = 0;
+unsigned int Sensor::sensor_counter = 0;
 
+// default'owa metoda printowania wszystkich informacji o sensorze
 std::string Sensor::to_string() const {
     return "Sensor: " + std::to_string(id) + " type: " + type + " min: " + std::to_string(min) + " max: " + std::to_string(max) + " frequency: " + std::to_string(frequency);
 }
 
+// metoda sluzaca do zbutowania wiadomosci przeslanej klientowi
 std::string Sensor::to_string_broadcast() const {
     return std::to_string(id) + ", " + type;
 }
@@ -20,6 +22,7 @@ int Sensor::generate_value() const {
     return distr(gen);
 }
 
+// parsowanie typu Quality do string
 std::string Sensor::quality_to_string(Quality quality) const {
     switch (quality) {
         case Quality::Alarm:
@@ -33,6 +36,7 @@ std::string Sensor::quality_to_string(Quality quality) const {
     }
 }
 
+// klasyfikacja wygenerowanej wartosci przez symulator
 std::string Sensor::classify_value(int value) const {
     int range = max - min;
     int alarmRange = range * 0.1;

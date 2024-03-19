@@ -6,17 +6,17 @@ template <typename T>
 class DeviceManager{
     protected: 
         T ** devices;
-        unsigned int devicesCount;
+        unsigned int devices_count;
 
-        virtual void readJson(std::string _path_to_file) = 0;
+        virtual void read_json(std::string _path_to_file) = 0;
 
     public:
         ~DeviceManager(){
-            for(int i{}; i< devicesCount; i++){
+            for(int i{}; i< devices_count; i++){
                 delete devices[i];
             }
             delete[] devices;
         }
-        T ** getDevices() { return devices; }
-        unsigned int getDevicesCount() { return devicesCount; }
+        T ** get_devices() { return devices; }
+        unsigned int get_devices_count() { return devices_count; }
 };
