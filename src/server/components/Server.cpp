@@ -58,7 +58,7 @@ void Server::send_message(int value) {
 
 // glowna petla wysylania wiadomosci w okreslonej przez symulator czestotliwosci
 // pod uwage brany jest rowniez czas wyslania wszystkim klientom wiadomosci przez
-// co watek zostanie uspiony na czas od 0 do planned_sleep, nie mniej, nie wiecej
+// co watek zostanie uspiony na czas od 0 do planned_sleep
 void Server::broadcast() {
     try{
         while (true) {
@@ -75,6 +75,6 @@ void Server::broadcast() {
         }
     }
     catch(const std::exception& e){
-        std::cerr << "Exception in broadcastValue(): " << e.what() << std::endl;
+        std::cerr << "Exception in broadcast(): " << e.what() << std::endl;
     }
 }
