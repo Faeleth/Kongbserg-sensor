@@ -3,7 +3,7 @@
 #include <nlohmann/json.hpp>
 
 // wczytaj dane z pliku konfiguracyjnego czujnikow
-void ReceiverManager::read_json(std::string _path_to_file){
+void ReceiverManager::read_json(const std::string & _path_to_file){
     std::ifstream file(_path_to_file);
     if (!file.is_open()) {
         throw std::runtime_error("Failed to open file!");

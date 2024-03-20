@@ -9,6 +9,7 @@ class Sensor {
     unsigned int frequency;
     unsigned int id;
     std::string type;
+    unsigned int port;
 
     static unsigned int sensor_counter;
 
@@ -21,7 +22,7 @@ class Sensor {
     std::string quality_to_string(Quality quality) const;
 
     public:
-        Sensor(int _min, int _max, unsigned int _freq, std::string _type, unsigned int _id): min(_min), max(_max), frequency(_freq), type(_type), id(_id){};
+        Sensor(int _min, int _max, unsigned int _freq, std::string _type, unsigned int _id, unsigned int _port): min(_min), max(_max), frequency(_freq), type(_type), id(_id), port(_port){};
         int generate_value() const;
         std::string classify_value(int value) const;
 
@@ -29,4 +30,5 @@ class Sensor {
         std::string to_string_broadcast() const;
         int get_id() const { return id; };
         unsigned int getFrequency() const { return frequency; };
+        unsigned int getPort() const { return port; };
 };

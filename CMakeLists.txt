@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(kongsberg_sensor VERSION 0.1.0 LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 14)
 
 find_package(Boost REQUIRED COMPONENTS system)
 
@@ -17,11 +18,11 @@ set(CLIENT_SOURCES
 )
 
 add_executable(${PROJECT_NAME}_server ${SERVER_SOURCES})
-target_link_libraries(${PROJECT_NAME}_server ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_server PRIVATE Boost::system)
 
 add_executable(${PROJECT_NAME}_client ${CLIENT_SOURCES})
-target_link_libraries(${PROJECT_NAME}_client ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_client PRIVATE Boost::system)
 
-target_include_directories(${PROJECT_NAME}_server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS})
-target_include_directories(${PROJECT_NAME}_client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME}_server PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(${PROJECT_NAME}_client PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 

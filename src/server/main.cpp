@@ -5,9 +5,9 @@
 #include <fstream>
 #include <SensorManager.hpp>
 #include <Sensor.hpp>
+#include <vector>
 
 int main(int argc, char* argv[]) {
-    srand(time(NULL));
     if(argc < 2){
         std::cerr << "Not enough arguments\n";
         return 1;
@@ -15,34 +15,34 @@ int main(int argc, char* argv[]) {
     const std::string SENSORS_PATH = argv[1]; 
     
     // otworzenie i wczytanie pliku configuracyjnego json
-    SensorManager * sensorManager = new SensorManager(SENSORS_PATH);
-    const auto sensors = sensorManager->get_devices();
+    SensorManager sensorManager(SENSORS_PATH);
+    const auto sensors = sensorManager.get_devices();
 
-    Server** servers = new Server*[sensorManager->get_devices_count()];
-    unsigned short port = 9999;
+    Server** servers = new Server*[sensorManager.get_devices_count()];
 
+    std::vector<std::thread> threads;
     // takich watkow jest tyle ile jest sensorow
-    for (int i{}; i<sensorManager->get_devices_count(); i++) {
+    for (int i{}; i<sensorManager.get_devices_count(); i++) {
         servers[i] = new Server(
             sensors[i], 
-            port--
+            sensors[i]->getPort()
         );
         // stworz watki zajmujace sie akceptowaniem polaczen z klientami
-        std::thread(&Server::listen_connections, servers[i]).detach();
+        threads.push_back(std::thread(&Server::listen_connections, servers[i]));
         // logowanie portow
         std::cout << "Server with sensor [" << sensors[i]->get_id() << "] works on port: " << servers[i]->get_port() << std::endl;
-
-        // stworz watki zajmujace sie generowaniem i wysylaniem wiadomosci do swoich odbiorcow
-        std::thread(&Server::broadcast, servers[i]).detach();
+        threads.push_back(std::thread(&Server::broadcast, servers[i]));
     }
 
     // utrzymanie glownego watku programu przed zakonczeniem
-    while(true){}
+    for (auto& t : threads) {
+        t.join();
+    }
 
-    for (int i{}; i<sensorManager->get_devices_count(); i++) {
+    for (int i{}; i<sensorManager.get_devices_count(); i++) {
         delete servers[i];
+        servers[i] = nullptr;
     }
     delete[] servers;
-    delete sensorManager;
     return 0;
 }

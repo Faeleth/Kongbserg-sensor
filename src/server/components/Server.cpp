@@ -21,8 +21,7 @@ void Server::listen_connections() {
             auto remote_endpoint = socket->remote_endpoint();
             std::cout << "New connection from: " << remote_endpoint.address().to_string() << ":" << remote_endpoint.port() << std::endl;
 
-            clientSockets.push_back(socket); // Add this client socket to the list
-
+            clientSockets.push_back(socket);
         }
     } catch (std::exception& e) {
         std::cerr << "Exception in run(): " << e.what() << std::endl;
@@ -44,9 +43,9 @@ void Server::send_message(int value) {
     for (auto it = clientSockets.begin(); it != clientSockets.end(); ++it) {
         try {
             boost::asio::write(*(*it), boost::asio::buffer(message));
-        } catch (std::exception& e) {
+        } catch (const std::exception& e) {
             std::cerr << "Error sending message to client: " << e.what() << std::endl;
-            errorSockets.push_back(*it); // Add socket to error list
+            errorSockets.push_back(*it);
         }
     }
 

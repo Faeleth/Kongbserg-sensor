@@ -5,7 +5,7 @@
 
 // inicjalizacja odbiornikow z pliku json i zarządzanie ich stanem
 class ReceiverManager: public DeviceManager<Receiver>{
-    void read_json(std::string _path_to_file) override;
+    void read_json(const std::string & _path_to_file) override;
     
     public:
         ReceiverManager(std::string _path_to_file){
@@ -13,5 +13,4 @@ class ReceiverManager: public DeviceManager<Receiver>{
             devices_count = 0; 
             read_json(_path_to_file);
         }
-        ~ReceiverManager();
 };

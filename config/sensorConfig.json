@@ -6,7 +6,8 @@
       "MinValue": -10,
       "MaxValue": 100,
       "EncoderType": "fixed",
-      "Frequency": 2 
+      "Frequency": 2,
+      "Port": 9999
     },
     {
       "ID": 2,
@@ -14,7 +15,8 @@
       "MinValue": -10000,
       "MaxValue": 10000,
       "EncoderType": "fixed",
-      "Frequency": 1 
+      "Frequency": 1,
+      "Port": 9998
     },
     {
       "ID": 3,
@@ -22,7 +24,8 @@
       "MinValue": 0,
       "MaxValue": 255,
       "EncoderType": "fixed",
-      "Frequency": 10
+      "Frequency": 10,
+      "Port": 9997
     }
   ]
 }
