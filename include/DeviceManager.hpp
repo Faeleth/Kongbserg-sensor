@@ -17,6 +17,6 @@ class DeviceManager{
             }
             delete[] devices;
         }
-        T ** get_devices() { return devices; }
-        unsigned int get_devices_count() { return devices_count; }
+        T ** get_devices() const { return devices; }
+        unsigned int get_devices_count() const { return devices_count; }
 };

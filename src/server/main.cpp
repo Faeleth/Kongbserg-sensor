@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
     
     // otworzenie i wczytanie pliku configuracyjnego json
     SensorManager * sensorManager = new SensorManager(SENSORS_PATH);
-    auto sensors = sensorManager->get_devices();
+    const auto sensors = sensorManager->get_devices();
 
     Server** servers = new Server*[sensorManager->get_devices_count()];
     unsigned short port = 9999;

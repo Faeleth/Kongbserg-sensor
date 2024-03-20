@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
 
   // otworzenie i wczytanie pliku configuracyjnego json
   ReceiverManager * receiverManager = new ReceiverManager(RECEIVERS_PATH);
-  auto receivers = receiverManager->get_devices();
+  const auto receivers = receiverManager->get_devices();
 
   Client** clients = new Client*[receiverManager->get_devices_count()];
 
