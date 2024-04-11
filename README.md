@@ -15,9 +15,9 @@ The project allows for the creation of multiple instances of sensor simulators, 
 
 For example, a configuration file may specify the creation of:
 
-Speed Sensors: Generating readings within the range <-10; 100> with a frequency of 2 Hz.
-Position Sensors: Generating readings within the range <-10000; 10000> with a frequency of 1 Hz.
-Depth Sensors: Generating readings within the range <0; 255> with a frequency of 10 Hz.
+Speed Sensors: Generating readings within the range <-10; 100> with a frequency of 2 Hz.<br>
+Position Sensors: Generating readings within the range <-10000; 10000> with a frequency of 1 Hz.<br>
+Depth Sensors: Generating readings within the range <0; 255> with a frequency of 10 Hz.<br>
 
 The number and parameters of these sensors are configurable via the configuration file, allowing for flexibility and scalability.
 
