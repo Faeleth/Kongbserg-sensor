@@ -23,7 +23,9 @@ The number and parameters of these sensors are configurable via the configuratio
 
 A classifier is implemented to assess the quality of each reading based on predefined intervals.
 
-The simulators transmit readings in a standardized format known as telegrams. Each telegram follows the pattern: $FIX, [ID], [TYPE], [VALUE], [QUALITY]*. For example: $FIX, 3, Depth, 129, Normal*.
+The simulators transmit readings in a standardized format known as telegrams. Each telegram follows the pattern: $FIX, [ID], [TYPE], [VALUE], [QUALITY]. <br>
+
+*For example: $FIX, 3, Depth, 129, Normal*.
 
 Telegrams are directly transmitted to receivers via the TCP protocol. Once received, they undergo decoding and are then presented in a readable format. Furthermore, telegrams classified as Warning or Alarm are specially highlighted to aid easy identification.
 
