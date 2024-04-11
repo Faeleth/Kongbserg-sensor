@@ -1,6 +1,7 @@
 <h1 align="center">Kongsberg sensor symulator</h1>
 
 <p align="center">
+  <a href="#memo-About The Project">About The Project</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
   <a href="https://github.com/Faeleth" target="_blank">Author</a>
@@ -8,7 +9,7 @@
 
 <br>
 
-## :white_check_mark: About The Project 📝 ##
+## :memo: About The Project ##
 
 The project allows for the creation of multiple instances of sensor simulators, with the number determined by the sensors configured in the configuration file. Each sensor simulator generates random readings within specified ranges and frequencies.
 
