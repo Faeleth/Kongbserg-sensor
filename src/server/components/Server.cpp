@@ -21,6 +21,7 @@ void Server::listen_connections() {
             auto remote_endpoint = socket->remote_endpoint();
             std::cout << "New connection from: " << remote_endpoint.address().to_string() << ":" << remote_endpoint.port() << std::endl;
 
+            std::lock_guard<std::mutex> lock(socketMutex);
             clientSockets.push_back(socket);
         }
     } catch (std::exception& e) {
@@ -51,6 +52,7 @@ void Server::send_message(int value) {
 
     // usuniecie socketow klientow ktorzy zerwali polaczenie
     for (auto& socket : errorSockets) {
+        std::lock_guard<std::mutex> lock(socketMutex);
         clientSockets.erase(std::remove(clientSockets.begin(), clientSockets.end(), socket), clientSockets.end());
     }
 }
