@@ -25,7 +25,10 @@ A classifier is implemented to assess the quality of each reading based on prede
 
 The simulators transmit readings in a standardized format known as telegrams. Each telegram follows the pattern: $FIX, [ID], [TYPE], [VALUE], [QUALITY]. <br>
 
-*For example: $FIX, 3, Depth, 129, Normal*.
+For example: <br>
+*$FIX, 1, depth, 129, Normal*
+*$FIX, 1, depth, 31, Warning\*    ⚠️*
+*$FIX, 1, depth, -9, Alarm\*      🚨*
 
 Telegrams are directly transmitted to receivers via the TCP protocol. Once received, they undergo decoding and are then presented in a readable format. Furthermore, telegrams classified as Warning or Alarm are specially highlighted to aid easy identification.
 
