@@ -25,11 +25,9 @@ A classifier is implemented to assess the quality of each reading based on prede
 
 The simulators transmit readings in a standardized format known as telegrams. Each telegram follows the pattern: $FIX, [ID], [TYPE], [VALUE], [QUALITY]*. For example: $FIX, 3, Depth, 129, Normal*.
 
-Initially, telegrams are displayed directly on the console. However, the program can be modified to send telegrams to receivers instead. Receivers are responsible for receiving, decoding, and presenting telegrams in a readable format. Additionally, telegrams classified as Warning or Alarm are highlighted.
+Telegrams are directly transmitted to receivers via the TCP protocol. Once received, they undergo decoding and are then presented in a readable format. Furthermore, telegrams classified as Warning or Alarm are specially highlighted to aid easy identification.
 
-To enhance flexibility and maintainability, the program reads sensor parameters and receiver configurations from separate JSON files (sensorConfig.json and a new configuration file for receivers, respectively).
-
-Finally, the program is designed to be easily extensible, allowing for the addition of new sensors or receivers without significant code modifications. This ensures scalability and ease of maintenance.
+To enhance flexibility and ease of maintenance, the program retrieves sensor parameters and receiver configurations from separate JSON files. Sensor parameters are fetched from 'sensorConfig.json', while receiver configurations are sourced from a dedicated file 'receiverConfig.json'.
 
 
 ## :white_check_mark: Requirements ##
